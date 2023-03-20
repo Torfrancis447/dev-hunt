@@ -6,6 +6,7 @@ class CompaniesController < ApplicationController
 
     def add_new_company
         company = Company.create!(company_params)
+        render json: company, status: :ok
     end
 
     private

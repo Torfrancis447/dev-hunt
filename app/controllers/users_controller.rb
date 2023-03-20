@@ -40,17 +40,7 @@ class UsersController < ApplicationController
         end
     end
 
-    # def job_applications
-      
-    #     user = Employee.find_by(employee_id: session[:user_id])
-    #     applications
-        
-    #     if applications
-    #         render json: applications, status: :ok
-    #     else
-    #         render json: {errors: ['Application not found']}, status: 404
-    #     end
-    # end
+   
 
     def check_image(user)
         unless user.image.attached?

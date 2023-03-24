@@ -14,6 +14,7 @@ gem "puma", "~> 5.0"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
+gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'active_model_serializers'
 
@@ -52,3 +53,5 @@ end
 
 
 # gem "jsonapi-serializer", "~> 2.2"
+
+gem "oauth2", "~> 2.0"

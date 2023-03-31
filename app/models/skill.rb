@@ -1,4 +1,3 @@
-class Skill < ApplicationRecord
-    
+class Skill < ApplicationRecord    
     belongs_to :job
 end

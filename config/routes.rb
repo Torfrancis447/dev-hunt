@@ -34,4 +34,5 @@ Rails.application.routes.draw do
   
   post "/skills", to: "skills#create"
   post "/jobs", to: "jobs#create"
+  post "/create_skills", to: "skills#skill_array"
 end

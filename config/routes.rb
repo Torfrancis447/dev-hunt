@@ -16,10 +16,10 @@ Rails.application.routes.draw do
   get "/companies", to: "companies#all_companies"
   post "/new-company", to: "companies#add_new_company"
   
-  # get"/searched", to: "jobs#searched"
+
   post "/signup", to: "users#create"
   get "/jobs", to: "jobs#index"
-  # get "/employee/:id", to: "users#employee"
+
   get "/me/:id", to: "users#me"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"

@@ -57,3 +57,5 @@ end
 gem "oauth2", "~> 2.0"
 
 gem "httparty", "~> 0.21.0"
+
+gem "aws-sdk-s3", require: false

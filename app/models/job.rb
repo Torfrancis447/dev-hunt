@@ -1,7 +1,11 @@
 class Job < ApplicationRecord
     has_many :job_applications, dependent: :destroy
     belongs_to :company
-    has_many :skills
+    has_many :job_skills
+
+    validates :description, :location_type, :employment_type, :location, :title, :compensation_type, :compensation, presence: true
+    validates :title, length: { minimum: 2, maximum: 50 }
+    validates :description, length: { minimum: 10, maximum: 500 }
     def posted_time
         self.created_at.strftime("%m-%d-%Y") 
     end
@@ -14,6 +18,7 @@ class Job < ApplicationRecord
         self.job_applications.count
     end
     
+
 end
 
 # how to created ruby method of formatted time?

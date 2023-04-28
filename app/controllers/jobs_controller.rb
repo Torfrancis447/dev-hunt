@@ -8,7 +8,9 @@ class JobsController < ApplicationController
     end
     def create        
         job = Job.create!(job_params)
-        skill = Skill.new(name: params[:name], job_id:job.id )
+        job_skills = [
+            JobSkill.new(job: job, skill: Skill.find_by(name: "Ruby"))
+            ]
         if skill.valid?
             render json: job , status: :created
         else

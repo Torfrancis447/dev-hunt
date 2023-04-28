@@ -4,7 +4,8 @@ class User < ApplicationRecord
     has_many :jobs, through: :job_applications
     has_many :employees
     has_secure_password
-    
+    validates :name, :email, :password, presence: true
+    validates :email, uniqueness: true
 
     def jobs_applied_to
         self.job_applications.count
@@ -48,7 +49,7 @@ class User < ApplicationRecord
                 application_count: job.application_count,
                 company: job.company_id, 
                 location_type: job.location_type,
-                skills: job.skills
+                # skills: job.skills
             }
         end
     end

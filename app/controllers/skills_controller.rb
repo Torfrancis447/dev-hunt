@@ -2,6 +2,8 @@ require 'httparty'
 
 class SkillsController < ApplicationController
     skip_before_action :authorize
+    rescue_from ActiveRecord::RecordInvalid, with: :not_valid
+    
     def index
         render json: Skill.all
     end
@@ -24,8 +26,13 @@ class SkillsController < ApplicationController
 
     def skill_array
         
-        skill = get_skills(params[:name]="Developer")
-        render json: skill, status: :ok 
+        skill = get_skills(params[:name])
+        skill.create!
+        if skill
+            render json: skill, status: :ok 
+        else
+            render json: { errors: ["Invalid skill"] }, status: 404
+        end
     end
     
     private
@@ -37,11 +44,17 @@ class SkillsController < ApplicationController
         'apikey' => ENV['API_KEY']
         }
         response = HTTParty.get(url, headers: headers)
-        response.body
+        skills = JSON.parse(response.body).map.with_index do |skill, index|
+            { id: index + 1, name: skill }
+        end
+        skills
     end
 
     def skill_params
         params.require(:skill).permit(:name)
     end
     
+    def not_valid invalid_skill
+        render json: { errors: invalid_skill.record.errors.full_messages }, status: 422
+    end
 end
